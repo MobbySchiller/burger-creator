@@ -13,7 +13,7 @@ const Ingredients: FC = () => {
     })
 
     return (
-        <section>
+        <section className='ingredients'>
             {ingredients}
         </section>
     )

@@ -1,10 +1,13 @@
 import { FC } from 'react'
 import Ingredients from '../../components/Ingredients/Ingredients'
+import CustomBurger from '../../components/CustomBurger/CustomBurger'
+import './Home.scss'
 
 const Home: FC = () => {
     return (
-        <main>
+        <main className='home'>
             <Ingredients />
+            <CustomBurger />
         </main>
     )
 }

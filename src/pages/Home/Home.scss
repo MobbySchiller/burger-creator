@@ -1,0 +1,25 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.home {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    grid-template-areas:
+        'custom-burger'
+        'ingredients'
+    ;
+    justify-content: center;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+
+    @include mq(lg) {
+        grid-template-rows: auto;
+        grid-template-columns: 50% 50%;
+        grid-template-areas:
+            'ingredients custom-burger'
+            'ingredients custom-burger'
+        ;
+    }
+}

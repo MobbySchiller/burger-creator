@@ -1,0 +1,14 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.custom-burger {
+    grid-area: 'custom-burger';
+    color: $elements;
+}
+
+.custom-burger__title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: clamp(2.4rem, 2.4vw, 6rem);
+}

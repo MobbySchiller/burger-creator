@@ -1,0 +1,20 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.ingredients {
+    display: grid;
+    grid-template-columns: auto;
+    flex-wrap: wrap;
+    grid-area: ingredients;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+
+    @include mq(sm) {
+        grid-template-columns: auto auto;
+    }
+
+    @include mq(md) {
+        grid-template-columns: auto auto auto;
+    }
+}
