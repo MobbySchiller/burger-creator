@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 const Favourites: FC = () => {
     return (
-        <p>Favourites</p>
+        <main>Favourites</main>
     )
 }
 

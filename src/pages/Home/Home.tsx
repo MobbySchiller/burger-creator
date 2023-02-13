@@ -1,8 +1,11 @@
 import { FC } from 'react'
+import Ingredients from '../../components/Ingredients/Ingredients'
 
 const Home: FC = () => {
     return (
-        <p>Home</p>
+        <main>
+            <Ingredients />
+        </main>
     )
 }
 
