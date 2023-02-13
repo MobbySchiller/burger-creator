@@ -1,11 +1,11 @@
-import { FC, useReducer, useContext, createContext, Dispatch } from 'react'
+import { FC, useReducer, createContext, Dispatch } from 'react'
 import { InitialState, Action } from '../../types/Home'
 import Ingredients from '../../components/Ingredients/Ingredients'
 import Customization from '../../components/Customization/Customization'
 import './Home.scss'
 
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
     name: '',
     ingredients: {
         bottomBun: 0,
@@ -18,7 +18,7 @@ const initialState: InitialState = {
     }
 }
 
-const CurrentBurgerContext = createContext<[InitialState, Dispatch<Action>]>([initialState, () => { }])
+export const CurrentBurgerContext = createContext<[InitialState, Dispatch<Action>]>([initialState, () => { }])
 
 const reducer = (state = initialState, action: Action): InitialState => {
     switch (action.type) {
