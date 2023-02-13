@@ -1,12 +1,12 @@
 @import '../../sass/variables';
 @import '../../sass/mixins';
 
-.custom-burger {
-    grid-area: 'custom-burger';
+.customization {
+    grid-area: 'customization';
     color: $elements;
 }
 
-.custom-burger__title {
+.customization__title {
     display: flex;
     flex-direction: column;
     text-align: center;
