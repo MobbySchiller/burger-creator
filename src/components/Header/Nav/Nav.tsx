@@ -26,17 +26,17 @@ const Nav: FC = () => {
         }
     ]
 
-    const routes: JSX.Element[] = links.map(link => (
+    const navButtons: JSX.Element[] = links.map(link => (
         <NavLink to={link.path}>
-            <div className='navigation__link'>
+            <button className='navigation__button'>
                 <FontAwesomeIcon icon={link.icon} />
-            </div>
+            </button>
         </NavLink >
     ))
 
     return (
         <nav className='navigation'>
-            {routes}
+            {navButtons}
         </nav>
     )
 }
