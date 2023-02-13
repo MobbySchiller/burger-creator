@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faHouse, faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -26,9 +27,11 @@ const Nav: FC = () => {
     ]
 
     const routes: JSX.Element[] = links.map(link => (
-        <div className='navigation__link'>
-            <FontAwesomeIcon icon={link.icon} />
-        </div>
+        <NavLink to={link.path}>
+            <div className='navigation__link'>
+                <FontAwesomeIcon icon={link.icon} />
+            </div>
+        </NavLink >
     ))
 
     return (
