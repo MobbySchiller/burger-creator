@@ -1,9 +1,10 @@
 import { FC } from 'react'
+import Header from './components/Header/Header'
 
 const App: FC = () => {
   return (
-    <div>
-      App
+    <div className='wrapper'>
+      <Header />
     </div>
   )
 }
