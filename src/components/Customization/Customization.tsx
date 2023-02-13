@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import CustomBurger from '../CustomBurger/CustomBurger'
 import './Customization.scss'
 
 const Customization: FC = () => {
@@ -9,6 +10,7 @@ const Customization: FC = () => {
                 <span>Custom</span>
                 <span>Burger</span>
             </h2>
+            <CustomBurger />
         </section>
     )
 }

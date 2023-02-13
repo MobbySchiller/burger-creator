@@ -11,3 +11,13 @@
         @error '"#{$breakpoint}" - error'
     }
 }
+
+;
+
+@mixin burger-ingredient($height) {
+    width: 250px;
+    aspect-ratio: calc(250/$height);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
