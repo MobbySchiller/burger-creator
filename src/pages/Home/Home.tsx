@@ -7,15 +7,7 @@ import './Home.scss'
 
 export const initialState: InitialState = {
     name: '',
-    ingredients: {
-        bottomBun: 0,
-        topBun: 0,
-        tomato: 0,
-        burger: 0,
-        fish: 0,
-        lettuce: 0,
-        cheese: 0
-    }
+    ingredients: []
 }
 
 export const CurrentBurgerContext = createContext<[InitialState, Dispatch<Action>]>([initialState, () => { }])
@@ -25,23 +17,21 @@ const reducer = (state = initialState, action: Action): InitialState => {
         case 'name':
             return {
                 ...state,
-                name: action.value
+                name: action.payload
             }
-        case 'increment':
+        case 'add':
             return {
                 ...state,
-                ingredients: {
-                    ...state.ingredients,
-                    [action.ingredient]: state.ingredients[action.ingredient] + 1
-                }
+                ingredients: [...state.ingredients, action.payload]
             }
-        case 'decrement':
+        case 'remove':
+            const index = state.ingredients.lastIndexOf(action.payload)
             return {
                 ...state,
-                ingredients: {
-                    ...state.ingredients,
-                    [action.ingredient]: state.ingredients[action.ingredient] - 1
-                }
+                ingredients: [
+                    ...state.ingredients.slice(0, index),
+                    ...state.ingredients.slice(index + 1)
+                ]
             }
         default:
             return state

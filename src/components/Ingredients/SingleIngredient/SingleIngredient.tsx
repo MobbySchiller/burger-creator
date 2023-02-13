@@ -1,13 +1,11 @@
 import { FC, useContext } from 'react'
 import { CurrentBurgerContext } from '../../../pages/Home/Home'
-import { Ingredients } from '../../../types/Home'
-import { IngredientKey } from '../../../types/SingleIngredients'
 import './SingleIngredient.scss'
 
 type SingleIngredientProps = {
     ingredient: {
         name: string,
-        value: keyof Ingredients,
+        value: string,
         img: any
     }
 }
@@ -17,15 +15,18 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient }) => {
 
     const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
 
-    const currentValue = currentBurger.ingredients[value]
+    const currentValue = currentBurger.ingredients
+        .filter(ingredient => ingredient === value)
+        .length
+
 
     const handleRemove = () => {
         if (currentValue === 0) return
-        dispatch({ type: 'decrement', ingredient: value as IngredientKey })
+        dispatch({ type: 'remove', payload: value })
     }
 
     const handleAdd = () => {
-        dispatch({ type: 'increment', ingredient: value as IngredientKey })
+        dispatch({ type: 'add', payload: value })
     }
 
 
