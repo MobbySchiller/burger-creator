@@ -5,12 +5,12 @@
     margin: 0 auto;
 }
 
-.custom-burger__bottom-bun {
+.custom-burger__bottomBun {
     background-image: url(../../assets/bottom-bun.png);
     @include burger-ingredient(50);
 }
 
-.custom-burger__top-bun {
+.custom-burger__topBun {
     background-image: url(../../assets/top-bun.png);
     @include burger-ingredient(107);
 }

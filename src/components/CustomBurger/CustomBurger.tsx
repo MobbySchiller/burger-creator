@@ -1,18 +1,20 @@
-import { FC } from 'react'
+import { FC, useContext } from 'react'
+import { CurrentBurgerContext } from '../../pages/Home/Home'
 import './CustomBurger.scss'
 
 
 const CustomBurger: FC = () => {
+    const [currentBurger] = useContext(CurrentBurgerContext)
+    const { ingredients } = currentBurger
+
+
+    const customBurgerIngredients = ingredients.map((ingredient, index) => (
+        <div key={`${ingredient}-${index}`} className={`custom-burger__${ingredient}`}></div>
+    ))
 
     return (
         <div className='custom-burger'>
-            <div className='custom-burger__top-bun'></div>
-            <div className='custom-burger__tomato'></div>
-            <div className='custom-burger__cheese'></div>
-            <div className='custom-burger__burger'></div>
-            <div className='custom-burger__fish'></div>
-            <div className='custom-burger__lettuce'></div>
-            <div className='custom-burger__bottom-bun'></div>
+            {customBurgerIngredients}
         </div>
     )
 }

@@ -22,7 +22,7 @@ const reducer = (state = initialState, action: Action): InitialState => {
         case 'add':
             return {
                 ...state,
-                ingredients: [...state.ingredients, action.payload]
+                ingredients: [action.payload, ...state.ingredients]
             }
         case 'remove':
             const index = state.ingredients.lastIndexOf(action.payload)
