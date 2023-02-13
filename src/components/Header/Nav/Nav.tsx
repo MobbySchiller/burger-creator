@@ -21,7 +21,7 @@ const Nav: FC = () => {
     ]
 
     const navButtons: JSX.Element[] = links.map(link => (
-        <NavLink to={link.path}>
+        <NavLink to={link.path} key={link.name}>
             <button className='navigation__button'>
                 <FontAwesomeIcon icon={link.icon} />
             </button>
