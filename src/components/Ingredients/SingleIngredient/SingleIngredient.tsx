@@ -15,20 +15,18 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient }) => {
 
     const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
 
-    const currentValue = currentBurger.ingredients
+    const currentIngredientAmount = currentBurger.ingredients
         .filter(ingredient => ingredient === value)
         .length
 
-
     const handleRemove = () => {
-        if (currentValue === 0) return
+        if (currentIngredientAmount === 0) return
         dispatch({ type: 'remove', payload: value })
     }
 
     const handleAdd = () => {
         dispatch({ type: 'add', payload: value })
     }
-
 
     return (
         <div className='ingredient'>
@@ -37,7 +35,7 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient }) => {
                     className='ingredient-counter__btn ingredient-counter__btn--remove'
                     onClick={handleRemove}
                 >-</button>
-                <span>{currentValue}</span>
+                <span>{currentIngredientAmount}</span>
                 <button
                     className='ingredient-counter__btn ingredient-counter__btn--add'
                     onClick={handleAdd}
