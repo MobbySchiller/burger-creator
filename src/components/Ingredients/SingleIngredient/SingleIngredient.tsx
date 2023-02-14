@@ -1,5 +1,5 @@
 import React, { FC, useContext, Dispatch } from 'react'
-import { CurrentBurgerContext } from '../../../pages/Home/Home'
+import { CurrentBurgerContext } from '../../../context/BurgerCreatorContext'
 import './SingleIngredient.scss'
 
 type SingleIngredientProps = {

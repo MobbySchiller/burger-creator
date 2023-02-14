@@ -1,5 +1,5 @@
 import React, { FC, useState, useContext, useRef } from 'react'
-import { CurrentBurgerContext } from '../../pages/Home/Home'
+import { CurrentBurgerContext } from '../../context/BurgerCreatorContext'
 import CustomBurger from '../CustomBurger/CustomBurger'
 import './Customization.scss'
 

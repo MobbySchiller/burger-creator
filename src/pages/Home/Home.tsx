@@ -1,16 +1,11 @@
-import { FC, useState, useReducer, createContext, Dispatch } from 'react'
+import { FC, useState, useReducer } from 'react'
 import { InitialState, Action } from '../../types/Home'
+import { CurrentBurgerContext, initialState } from '../../context/BurgerCreatorContext'
 import Ingredients from '../../components/Ingredients/Ingredients'
 import Customization from '../../components/Customization/Customization'
 import Header from '../../components/Header/Header'
 import './Home.scss'
 
-export const initialState: InitialState = {
-    name: '',
-    ingredients: []
-}
-
-export const CurrentBurgerContext = createContext<[InitialState, Dispatch<Action>]>([initialState, () => { }])
 
 const reducer = (state = initialState, action: Action): InitialState => {
     switch (action.type) {
