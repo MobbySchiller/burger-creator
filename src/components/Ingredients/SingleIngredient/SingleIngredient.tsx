@@ -22,8 +22,8 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) =
         .length
 
     const handleRemove = () => {
-        if (currentIngredientAmount === 0) return
-        if (ingredients.length > 1 && value === 'bottomBun') {
+        if (checkIfEmptyIngridients()) return
+        if (checkAbilityToRemoveBottomBun()) {
             setError('You cannot remove the bottom bun while there is another product on it.')
             return
         }
@@ -31,20 +31,23 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) =
         setError('')
     }
 
+    const checkIfEmptyIngridients = () => currentIngredientAmount === 0
+    const checkAbilityToRemoveBottomBun = () => ingredients.length > 1 && value === 'bottomBun'
+
     const handleAdd = () => {
-        if (isTopBunInBurger()) {
+        if (checkExistingTopBunInBurger()) {
             setError('Your burger is complete. You cannot add another ingredient.')
             return
         }
-        if (ingredients.length === 8 && value !== 'topBun') {
+        if (checkLastItem()) {
             setError('The maximum number of items is 9 including buns. Last item must be top bun.')
             return
         }
-        if (isBottomBunInBurger() && value === 'bottomBun') {
+        if (checkExistingBottomBunInBurger() && value === 'bottomBun') {
             setError('You cannot add another bottom bun.')
             return
         }
-        if (ingredients.length === 0 && value !== 'bottomBun') {
+        if (checkFirstItem()) {
             setError('First item must be bottom bun')
             return
         }
@@ -52,13 +55,10 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) =
         setError('')
     }
 
-    const isTopBunInBurger = () => {
-        return ingredients.some(ingredient => ingredient === 'topBun')
-    }
-
-    const isBottomBunInBurger = () => {
-        return ingredients.some(ingredient => ingredient === 'bottomBun')
-    }
+    const checkExistingTopBunInBurger = () => ingredients.some(ingredient => ingredient === 'topBun')
+    const checkLastItem = () => ingredients.length === 8 && value !== 'topBun'
+    const checkExistingBottomBunInBurger = () => ingredients.some(ingredient => ingredient === 'bottomBun')
+    const checkFirstItem = () => ingredients.length === 0 && value !== 'bottomBun'
 
     return (
         <div className='ingredient'>
