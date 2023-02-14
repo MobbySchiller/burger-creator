@@ -50,7 +50,7 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
     }
 
     const checkNameAvailability = (name: string) => {
-        const isTheSameName = favouriteBurgers.filter(burger => burger.name === name)
+        const isTheSameName = favouriteBurgers.filter(burger => burger.name.toLowerCase() === name.toLowerCase())
         return isTheSameName.length
     }
 
