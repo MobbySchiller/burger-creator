@@ -1,9 +1,8 @@
-import { FC, useReducer, createContext, Dispatch } from 'react'
+import { FC, useState, useReducer, createContext, Dispatch } from 'react'
 import { InitialState, Action } from '../../types/Home'
 import Ingredients from '../../components/Ingredients/Ingredients'
 import Customization from '../../components/Customization/Customization'
 import './Home.scss'
-
 
 export const initialState: InitialState = {
     name: '',
@@ -40,12 +39,13 @@ const reducer = (state = initialState, action: Action): InitialState => {
 
 const Home: FC = () => {
     const [currentBurger, dispatch] = useReducer(reducer, initialState)
+    const [error, setError] = useState<string>('')
 
     return (
         <CurrentBurgerContext.Provider value={[currentBurger, dispatch]}>
             <main className='home'>
-                <Ingredients />
-                <Customization />
+                <Ingredients setError={setError} />
+                <Customization error={error} />
             </main>
         </CurrentBurgerContext.Provider >
     )

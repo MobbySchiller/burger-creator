@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react'
+import React, { FC, useContext, Dispatch } from 'react'
 import { CurrentBurgerContext } from '../../../pages/Home/Home'
 import './SingleIngredient.scss'
 
@@ -7,10 +7,11 @@ type SingleIngredientProps = {
         name: string,
         value: string,
         img: any
-    }
+    },
+    setError: Dispatch<React.SetStateAction<string>>
 }
 
-const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient }) => {
+const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) => {
     const { name, value, img } = ingredient
 
     const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
@@ -22,16 +23,33 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient }) => {
 
     const handleRemove = () => {
         if (currentIngredientAmount === 0) return
-        if (ingredients.length > 1 && value === 'bottomBun') return
+        if (ingredients.length > 1 && value === 'bottomBun') {
+            setError('You cannot remove the bottom bun while there is another product on it.')
+            return
+        }
         dispatch({ type: 'remove', payload: value })
+        setError('')
     }
 
     const handleAdd = () => {
-        if (isTopBunInBurger()) return
-        if (ingredients.length === 8 && value !== 'topBun') return
-        if (isBottomBunInBurger() && value === 'bottomBun') return
-        if (ingredients.length === 0 && value !== 'bottomBun') return
+        if (isTopBunInBurger()) {
+            setError('Your burger is complete. You cannot add another ingredient.')
+            return
+        }
+        if (ingredients.length === 8 && value !== 'topBun') {
+            setError('The maximum number of items is 9 including buns. Last item must be top bun.')
+            return
+        }
+        if (isBottomBunInBurger() && value === 'bottomBun') {
+            setError('You cannot add another bottom bun.')
+            return
+        }
+        if (ingredients.length === 0 && value !== 'bottomBun') {
+            setError('First item must be bottom bun')
+            return
+        }
         dispatch({ type: 'add', payload: value })
+        setError('')
     }
 
     const isTopBunInBurger = () => {
