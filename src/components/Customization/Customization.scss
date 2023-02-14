@@ -25,6 +25,10 @@
     text-align: center;
 }
 
+.customization__success-icon {
+    margin-left: 10px;
+}
+
 .customization__start {
     color: $info;
     font-size: clamp(2.2rem, 1.4vw, 4rem);

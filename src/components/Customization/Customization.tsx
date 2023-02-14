@@ -1,4 +1,6 @@
 import React, { FC, useState, useContext, useRef, Dispatch } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { CurrentBurgerContext } from '../../context/BurgerCreatorContext'
 import CustomBurger from '../CustomBurger/CustomBurger'
 import './Customization.scss'
@@ -57,7 +59,13 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
                     <span>Burger</span>
                 </h2>
                 {isBurgerAdded ?
-                    <p className='customization__success'>Burger saved successfully</p>
+                    <p className='customization__success'>
+                        Burger saved successfully
+                        <FontAwesomeIcon
+                            icon={faCheck}
+                            className='customization__success-icon'
+                        />
+                    </p>
                     :
                     <div>
                         {error &&
