@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext, useRef } from 'react'
+import React, { FC, useState, useContext, useRef, useEffect } from 'react'
 import { CurrentBurgerContext } from '../../context/BurgerCreatorContext'
 import CustomBurger from '../CustomBurger/CustomBurger'
 import './Customization.scss'
@@ -12,7 +12,8 @@ type CustomizationProps = {
 
 const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete }) => {
     const [addAttemptError, setAddAttemptError] = useState<string>('')
-    const [currentBurger] = useContext(CurrentBurgerContext)
+    const [isBurgerAdded, setIsBurgerAdded] = useState<boolean>(false)
+    const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
     const { ingredients } = currentBurger
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -23,7 +24,26 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete }) => {
             setAddAttemptError('Name format not allowed.')
         } else {
             setAddAttemptError('')
+            setName(inputValue)
         }
+    }
+
+    const setName = (name: string) => {
+        if (checkNameAvailability(name)) {
+            setAddAttemptError('Name taken')
+            return
+        }
+        const newBurger = {
+            name,
+            ingredients: currentBurger.ingredients
+        }
+        localStorage.setItem(name, JSON.stringify(newBurger))
+        setIsBurgerAdded(true)
+        setTimeout(() => setIsBurgerAdded(false), 2000)
+    }
+
+    const checkNameAvailability = (name: string) => {
+        return localStorage.getItem(name)
     }
 
     return (
@@ -33,32 +53,38 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete }) => {
                     <span>Custom</span>
                     <span>Burger</span>
                 </h2>
-                {error &&
-                    <p className='customization__error'>{error}</p>
-                }
-                {!error &&
-                    <p className='customization__start'>
-                        {ingredients.length ?
-                            ''
-                            :
-                            'Add items to create your burger. First item must be bottom bun. To finish your burger choose top bun'
+                {isBurgerAdded ?
+                    <p>Burger saved successfully</p>
+                    :
+                    <div>
+                        {error &&
+                            <p className='customization__error'>{error}</p>
                         }
-                    </p>
-                }
-                <CustomBurger />
-                {isBurgerComplete &&
-                    <form
-                        className='customization__form'
-                        onSubmit={handleSubmit}
-                    >
-                        <input
-                            type='text'
-                            placeholder='Enter a name of burger'
-                            ref={inputRef}
-                        />
-                        <span>{addAttemptError}</span>
-                        <button type='submit'>SAVE</button>
-                    </form>
+                        {!error &&
+                            <p className='customization__start'>
+                                {ingredients.length ?
+                                    ''
+                                    :
+                                    'Add items to create your burger. First item must be bottom bun. To finish your burger choose top bun'
+                                }
+                            </p>
+                        }
+                        <CustomBurger />
+                        {isBurgerComplete &&
+                            <form
+                                className='customization__form'
+                                onSubmit={handleSubmit}
+                            >
+                                <input
+                                    type='text'
+                                    placeholder='Enter a name of burger'
+                                    ref={inputRef}
+                                />
+                                <span>{addAttemptError}</span>
+                                <button type='submit'>SAVE</button>
+                            </form>
+                        }
+                    </div>
                 }
             </div>
         </section >
