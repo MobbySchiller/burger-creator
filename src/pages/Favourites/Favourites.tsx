@@ -7,24 +7,36 @@ import FavouriteBurgerPreview from '../../components/FavouriteBurgerPreview/Favo
 import './Favourites.scss'
 
 const Favourites: FC = () => {
-    const { favouriteBurgers } = useContext(FavouriteBurgersContext)
+    const { favouriteBurgers, setFavouriteBurgers } = useContext(FavouriteBurgersContext)
 
-    const burgersToDisplay = favouriteBurgers.map(burger => (
-        <div
-            key={burger.name}
-            className='burger-preview'
-        >
-            <FavouriteBurgerPreview ingredients={burger.ingredients} />
-            <p className='burger-preview__name'>{burger.name}</p>
-            <button className='burger-preview__button'>
-                <FontAwesomeIcon
-                    icon={faTrash}
-                    className='burger-preview__button-icon'
-                />
-                Remove
-            </button>
-        </div>
-    ))
+    const burgersToDisplay = favouriteBurgers.map(burger => {
+        const { name, ingredients } = burger
+
+        const handleRemove = () => {
+            const newFavouriteBurgers = favouriteBurgers.filter(burger => burger.name !== name)
+            setFavouriteBurgers(newFavouriteBurgers)
+        }
+
+        return (
+            <div
+                key={name}
+                className='burger-preview'
+            >
+                <FavouriteBurgerPreview ingredients={ingredients} />
+                <p className='burger-preview__name'>{name}</p>
+                <button
+                    className='burger-preview__button'
+                    onClick={handleRemove}
+                >
+                    <FontAwesomeIcon
+                        icon={faTrash}
+                        className='burger-preview__button-icon'
+                    />
+                    Remove
+                </button>
+            </div>
+        )
+    })
 
     return (
         <>
