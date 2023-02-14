@@ -10,39 +10,39 @@
 }
 
 .custom-burger__bottomBun {
-    background-image: url(../../assets/pictures/bottom-bun.png);
+    background-image: url(../../assets/bottom-bun.png);
     @include burger-ingredient(50);
 }
 
 .custom-burger__topBun {
-    background-image: url(../../assets/pictures/top-bun.png);
+    background-image: url(../../assets/top-bun.png);
     @include burger-ingredient(107);
 }
 
 .custom-burger__tomato {
-    background-image: url(../../assets/pictures/tomato.png);
+    background-image: url(../../assets/tomato.png);
     @include burger-ingredient(43);
 }
 
 .custom-burger__cheese {
-    background-image: url(../../assets/pictures/cheese.png);
+    background-image: url(../../assets/cheese.png);
     @include burger-ingredient(37);
 }
 
 .custom-burger__burger {
-    background-image: url(../../assets/pictures/burger.png);
+    background-image: url(../../assets/burger.png);
     @include burger-ingredient(37);
     background-size: cover;
 }
 
 .custom-burger__fish {
-    background-image: url(../../assets/pictures/fish.png);
+    background-image: url(../../assets/fish.png);
     @include burger-ingredient(37);
     background-size: cover;
 }
 
 .custom-burger__lettuce {
-    background-image: url(../../assets/pictures/lettuce.png);
+    background-image: url(../../assets/lettuce.png);
     @include burger-ingredient(27);
 
 }
