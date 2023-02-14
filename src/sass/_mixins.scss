@@ -21,3 +21,13 @@
     background-position: center;
     background-size: contain;
 }
+
+;
+
+@mixin preview-burger-ingredient($height) {
+    width: 150px;
+    aspect-ratio: calc(250/$height);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}

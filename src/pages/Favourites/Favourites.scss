@@ -7,3 +7,57 @@
     font-size: clamp(2.2rem, 2.2vw, 6rem);
     text-align: center;
 }
+
+.favourites__burgers {
+    display: grid;
+    grid-template-columns: auto;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include mq(sm) {
+        grid-template-columns: auto auto;
+    }
+
+    @include mq(md) {
+        grid-template-columns: auto auto auto;
+    }
+
+    @include mq(lg) {
+        grid-template-columns: auto auto auto auto;
+    }
+}
+
+.burger-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.burger-preview__name {
+    padding: 10px 0;
+    color: $elements;
+    font-size: 2rem;
+}
+
+.burger-preview__button {
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    background-color: $remove;
+    color: $elements;
+    font-size: 1.6rem;
+    font-family: $font;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($remove, 10%);
+    }
+}
+
+.burger-preview__button-icon {
+    margin-right: 10px;
+}
