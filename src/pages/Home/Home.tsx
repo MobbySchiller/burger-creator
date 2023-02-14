@@ -41,14 +41,21 @@ const reducer = (state = initialState, action: Action): InitialState => {
 const Home: FC = () => {
     const [currentBurger, dispatch] = useReducer(reducer, initialState)
     const [error, setError] = useState<string>('')
+    const [isBurgerComplete, setIsBurgerComplete] = useState<boolean>(false)
 
     return (
         <>
             <Header title={'Burger Creator'} />
             <CurrentBurgerContext.Provider value={[currentBurger, dispatch]}>
                 <main className='home'>
-                    <Ingredients setError={setError} />
-                    <Customization error={error} />
+                    <Ingredients
+                        setError={setError}
+                        setIsBurgerComplete={setIsBurgerComplete}
+                    />
+                    <Customization
+                        error={error}
+                        isBurgerComplete={isBurgerComplete}
+                    />
                 </main>
             </CurrentBurgerContext.Provider >
         </>

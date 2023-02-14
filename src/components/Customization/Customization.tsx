@@ -4,10 +4,11 @@ import CustomBurger from '../CustomBurger/CustomBurger'
 import './Customization.scss'
 
 type CustomizationProps = {
-    error: string
+    error: string,
+    isBurgerComplete: boolean
 }
 
-const Customization: FC<CustomizationProps> = ({ error }) => {
+const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete }) => {
     const [currentBurger] = useContext(CurrentBurgerContext)
     const { ingredients } = currentBurger
 
@@ -31,6 +32,16 @@ const Customization: FC<CustomizationProps> = ({ error }) => {
                     </p>
                 }
                 <CustomBurger />
+                {isBurgerComplete &&
+                    <form
+                        className='customization__form'
+                    >
+                        <input
+                            type='text'
+                            placeholder='Enter a name of burger' />
+                        <button type='submit'>SAVE</button>
+                    </form>
+                }
             </div>
         </section >
     )

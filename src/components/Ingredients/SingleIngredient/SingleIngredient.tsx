@@ -8,10 +8,11 @@ type SingleIngredientProps = {
         value: string,
         img: any
     },
-    setError: Dispatch<React.SetStateAction<string>>
+    setError: Dispatch<React.SetStateAction<string>>,
+    setIsBurgerComplete: Dispatch<React.SetStateAction<boolean>>
 }
 
-const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) => {
+const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError, setIsBurgerComplete }) => {
     const { name, value, img } = ingredient
 
     const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
@@ -28,6 +29,7 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) =
             return
         }
         dispatch({ type: 'remove', payload: value })
+        setIsBurgerComplete(false)
         setError('')
     }
 
@@ -51,6 +53,9 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) =
             setError('First item must be bottom bun')
             return
         }
+        if (checkIfAddTopBun()) {
+            setIsBurgerComplete(true)
+        }
         dispatch({ type: 'add', payload: value })
         setError('')
     }
@@ -59,6 +64,7 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError }) =
     const checkLastItem = () => ingredients.length === 8 && value !== 'topBun'
     const checkExistingBottomBunInBurger = () => ingredients.some(ingredient => ingredient === 'bottomBun')
     const checkFirstItem = () => ingredients.length === 0 && value !== 'bottomBun'
+    const checkIfAddTopBun = () => value === 'topBun'
 
     return (
         <div className='ingredient'>

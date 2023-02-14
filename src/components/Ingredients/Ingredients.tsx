@@ -5,14 +5,20 @@ import './Ingredients.scss'
 
 type IngredientsProps = {
     setError: Dispatch<React.SetStateAction<string>>
+    setIsBurgerComplete: Dispatch<React.SetStateAction<boolean>>
 }
 
-const Ingredients: FC<IngredientsProps> = ({ setError }) => {
+const Ingredients: FC<IngredientsProps> = ({ setError, setIsBurgerComplete }) => {
 
     const ingredients = IngredientsList.map(ingredient => {
 
         return (
-            <SingleIngredient key={ingredient.value} ingredient={ingredient} setError={setError} />
+            <SingleIngredient
+                key={ingredient.value}
+                ingredient={ingredient}
+                setError={setError}
+                setIsBurgerComplete={setIsBurgerComplete}
+            />
         )
     })
 
