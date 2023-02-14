@@ -5,4 +5,7 @@ export const initialState: InitialState = {
     ingredients: []
 }
 
-export const CurrentBurgerContext = createContext<[InitialState, Dispatch<Action>]>([initialState, () => { }])
+export const CurrentBurgerContext = createContext<[InitialState, Dispatch<Action>]>([
+    initialState,
+    () => { }
+])

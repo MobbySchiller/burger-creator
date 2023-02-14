@@ -68,25 +68,25 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError, set
 
     return (
         <div className='ingredient'>
-            <div className='ingredient-counter'>
+            <div className='ingredient__counter'>
                 <button
-                    className='ingredient-counter__btn ingredient-counter__btn--remove'
+                    className='ingredient__counter-btn ingredient__counter-btn--remove'
                     onClick={handleRemove}
                 >-</button>
                 <span>{currentIngredientAmount}</span>
                 <button
-                    className='ingredient-counter__btn ingredient-counter__btn--add'
+                    className='ingredient__counter-btn ingredient__counter-btn--add'
                     onClick={handleAdd}
                 >+</button>
             </div>
-            <div className='ingredient-pic'>
+            <div className='ingredient__pic'>
                 <img
                     src={img}
                     alt={`${name}-image`}
-                    className='ingredient-pic__img'
+                    className='ingredient__img'
                 />
             </div>
-            <span className='ingredient-name'>{name}</span>
+            <span className='ingredient__name'>{name}</span>
         </div>
     )
 }
