@@ -9,11 +9,6 @@ import './Home.scss'
 
 const reducer = (state = initialState, action: Action): InitialState => {
     switch (action.type) {
-        case 'name':
-            return {
-                ...state,
-                name: action.payload
-            }
         case 'add':
             return {
                 ...state,
