@@ -58,7 +58,7 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
         <section className='customization'>
             <div className='custimization__wrapper'>
                 <h2 className='customization__title'>
-                    <span>Custom</span>
+                    <span>Your</span>
                     <span>Burger</span>
                 </h2>
                 {isBurgerAdded ?
@@ -91,7 +91,7 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
                             >
                                 <input
                                     type='text'
-                                    placeholder='Enter a name of burger'
+                                    placeholder='Burger name'
                                     ref={inputRef}
                                 />
                                 <span>{addAttemptError}</span>
