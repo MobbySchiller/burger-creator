@@ -19,6 +19,12 @@
     font-size: clamp(2.4rem, 2.4vw, 6rem);
 }
 
+.customization__success {
+    color: $add;
+    font-size: clamp(2.2rem, 1.4vw, 4rem);
+    text-align: center;
+}
+
 .customization__start {
     color: $info;
     font-size: clamp(2.2rem, 1.4vw, 4rem);

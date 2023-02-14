@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext, useRef, useEffect } from 'react'
+import React, { FC, useState, useContext, useRef, Dispatch } from 'react'
 import { CurrentBurgerContext } from '../../context/BurgerCreatorContext'
 import CustomBurger from '../CustomBurger/CustomBurger'
 import './Customization.scss'
@@ -8,9 +8,10 @@ const INPUT_REGEX = /^(?!\s+$).+/
 type CustomizationProps = {
     error: string,
     isBurgerComplete: boolean
+    setIsBurgerComplete: Dispatch<React.SetStateAction<boolean>>
 }
 
-const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete }) => {
+const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsBurgerComplete }) => {
     const [addAttemptError, setAddAttemptError] = useState<string>('')
     const [isBurgerAdded, setIsBurgerAdded] = useState<boolean>(false)
     const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
@@ -39,7 +40,9 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete }) => {
         }
         localStorage.setItem(name, JSON.stringify(newBurger))
         setIsBurgerAdded(true)
+        setIsBurgerComplete(false)
         setTimeout(() => setIsBurgerAdded(false), 2000)
+        dispatch({ type: 'reset', payload: '' })
     }
 
     const checkNameAvailability = (name: string) => {
@@ -54,7 +57,7 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete }) => {
                     <span>Burger</span>
                 </h2>
                 {isBurgerAdded ?
-                    <p>Burger saved successfully</p>
+                    <p className='customization__success'>Burger saved successfully</p>
                     :
                     <div>
                         {error &&

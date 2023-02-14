@@ -11,17 +11,19 @@ const reducer = (state = initialState, action: Action): InitialState => {
     switch (action.type) {
         case 'add':
             return {
-                ...state,
                 ingredients: [action.payload, ...state.ingredients]
             }
         case 'remove':
             const index = state.ingredients.lastIndexOf(action.payload)
             return {
-                ...state,
                 ingredients: [
                     ...state.ingredients.slice(0, index),
                     ...state.ingredients.slice(index + 1)
                 ]
+            }
+        case 'reset':
+            return {
+                ingredients: []
             }
         default:
             return state
@@ -45,6 +47,7 @@ const Home: FC = () => {
                     <Customization
                         error={error}
                         isBurgerComplete={isBurgerComplete}
+                        setIsBurgerComplete={setIsBurgerComplete}
                     />
                 </main>
             </CurrentBurgerContext.Provider >

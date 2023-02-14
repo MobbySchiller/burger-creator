@@ -3,7 +3,7 @@ export interface InitialState {
 }
 
 export interface Action {
-    type: 'add' | 'remove'
+    type: 'add' | 'remove' | 'reset'
     payload: string
 }
 
