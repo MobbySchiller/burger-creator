@@ -1,4 +1,5 @@
 import React, { FC, useState, useContext, useRef, Dispatch } from 'react'
+import { FavouriteBurgersContext } from '../../context/FavouriteBurgersContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { CurrentBurgerContext } from '../../context/BurgerCreatorContext'
@@ -17,6 +18,7 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
     const [addAttemptError, setAddAttemptError] = useState<string>('')
     const [isBurgerAdded, setIsBurgerAdded] = useState<boolean>(false)
     const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
+    const { favouriteBurgers, setFavouriteBurgers } = useContext(FavouriteBurgersContext)
     const { ingredients } = currentBurger
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -40,7 +42,7 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
             name,
             ingredients: currentBurger.ingredients
         }
-        localStorage.setItem(name, JSON.stringify(newBurger))
+        setFavouriteBurgers((prevState) => [...prevState, newBurger])
         setIsBurgerAdded(true)
         setIsBurgerComplete(false)
         setTimeout(() => setIsBurgerAdded(false), 2000)
@@ -48,7 +50,8 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
     }
 
     const checkNameAvailability = (name: string) => {
-        return localStorage.getItem(name)
+        const isTheSameName = favouriteBurgers.filter(burger => burger.name === name)
+        return isTheSameName.length
     }
 
     return (
