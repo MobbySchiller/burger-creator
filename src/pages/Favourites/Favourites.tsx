@@ -1,8 +1,12 @@
 import { FC } from 'react'
+import Header from '../../components/Header/Header'
 
 const Favourites: FC = () => {
     return (
-        <main>Favourites</main>
+        <>
+            <Header title={'Favourites Burgers'} />
+            <main>Favourites</main>
+        </>
     )
 }
 

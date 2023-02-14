@@ -2,10 +2,14 @@ import { FC } from 'react'
 import Title from './Title/Title'
 import Nav from './Nav/Nav'
 
-const Header: FC = () => {
+type HeaderProps = {
+    title: string
+}
+
+const Header: FC<HeaderProps> = ({ title }) => {
     return (
         <header>
-            <Title />
+            <Title name={title} />
             <Nav />
         </header>
     )

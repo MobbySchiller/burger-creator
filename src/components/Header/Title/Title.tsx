@@ -1,11 +1,15 @@
 import { FC } from 'react'
 import './Title.scss'
 
-const Title: FC = () => {
+type TitleProps = {
+    name: string
+}
+
+const Title: FC<TitleProps> = ({ name }) => {
+
     return (
         <h1 className='title'>
-            <span>Burger</span>
-            <span>Creator</span>
+            {name}
         </h1>
     )
 }
