@@ -21,7 +21,6 @@ const Customization: FC<CustomizationProps> = ({ error }) => {
                 {error &&
                     <p className='customization__error'>{error}</p>
                 }
-                <CustomBurger />
                 {!error &&
                     <p className='customization__start'>
                         {ingredients.length ?
@@ -31,6 +30,7 @@ const Customization: FC<CustomizationProps> = ({ error }) => {
                         }
                     </p>
                 }
+                <CustomBurger />
             </div>
         </section >
     )
