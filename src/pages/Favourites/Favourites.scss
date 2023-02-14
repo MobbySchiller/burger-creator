@@ -11,12 +11,14 @@
 .favourites__burgers {
     display: grid;
     grid-template-columns: auto;
+    justify-content: center;
     width: 95%;
     max-width: 1200px;
     margin: 0 auto;
 
     @include mq(sm) {
         grid-template-columns: auto auto;
+        justify-content: unset;
     }
 
     @include mq(md) {
