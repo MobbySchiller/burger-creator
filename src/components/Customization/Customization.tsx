@@ -18,7 +18,7 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
     const [addAttemptError, setAddAttemptError] = useState<string>('')
     const [isBurgerAdded, setIsBurgerAdded] = useState<boolean>(false)
     const [currentBurger, dispatch] = useContext(CurrentBurgerContext)
-    const { favouriteBurgers, setFavouriteBurgers } = useContext(FavouriteBurgersContext)
+    const { favouriteBurgers } = useContext(FavouriteBurgersContext)
     const { ingredients } = currentBurger
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -43,7 +43,6 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
             ingredients: currentBurger.ingredients
         }
         const updatedFavouriteBurgers = [...favouriteBurgers, newBurger]
-        setFavouriteBurgers(updatedFavouriteBurgers)
         localStorage.setItem('burgerCreator', JSON.stringify(updatedFavouriteBurgers))
         setIsBurgerAdded(true)
         setIsBurgerComplete(false)

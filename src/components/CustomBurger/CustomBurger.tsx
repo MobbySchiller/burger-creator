@@ -11,10 +11,6 @@ const CustomBurger: FC = () => {
         <div
             key={`${ingredient}-${index}`}
             className={`custom-burger__${ingredient}`}
-            style={{
-                transform: `translateY(-${index * 2}0px)`,
-                zIndex: `${100 - index}`
-            }}
         ></div>
     ))
 

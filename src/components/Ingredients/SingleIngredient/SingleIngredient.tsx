@@ -28,7 +28,7 @@ const SingleIngredient: FC<SingleIngredientProps> = ({ ingredient, setError, set
             setError('You cannot remove the bottom bun while there is another product on it.')
             return
         }
-        if (!checkExistingTopBunInBurger()) {
+        if (value === 'topBun') {
             setIsBurgerComplete(false)
         }
         dispatch({ type: 'remove', payload: value })

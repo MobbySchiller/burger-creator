@@ -10,7 +10,8 @@ const FavouriteBurgerPreview: FC<FavouriteBurgerPreviewProps> = ({ ingredients }
     const favouriteBurgerIngredients = ingredients.map((ingredient, index) => (
         <div
             key={`${ingredient}-${index}`}
-            className={`favourite-burger__${ingredient}`}>
+            className={`favourite-burger__${ingredient}`}
+        >
         </div>
     ))
 
