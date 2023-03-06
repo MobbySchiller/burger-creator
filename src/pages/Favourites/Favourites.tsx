@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react'
+import { FC, useContext, useEffect } from 'react'
 import { FavouriteBurgersContext } from '../../context/FavouriteBurgersContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -9,12 +9,19 @@ import './Favourites.scss'
 const Favourites: FC = () => {
     const { favouriteBurgers, setFavouriteBurgers } = useContext(FavouriteBurgersContext)
 
+    useEffect(() => {
+        const favouriteBurgers = localStorage.getItem('burgerCreator')
+        if (favouriteBurgers) {
+            setFavouriteBurgers(JSON.parse(favouriteBurgers))
+        }
+    })
+
     const burgersToDisplay = favouriteBurgers.map(burger => {
         const { name, ingredients } = burger
 
         const handleRemove = () => {
             const newFavouriteBurgers = favouriteBurgers.filter(burger => burger.name !== name)
-            setFavouriteBurgers(newFavouriteBurgers)
+            localStorage.setItem('burgerCreator', JSON.stringify(newFavouriteBurgers))
         }
 
         return (

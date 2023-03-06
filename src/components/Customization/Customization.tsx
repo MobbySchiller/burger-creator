@@ -42,7 +42,9 @@ const Customization: FC<CustomizationProps> = ({ error, isBurgerComplete, setIsB
             name,
             ingredients: currentBurger.ingredients
         }
-        setFavouriteBurgers((prevState) => [...prevState, newBurger])
+        const updatedFavouriteBurgers = [...favouriteBurgers, newBurger]
+        setFavouriteBurgers(updatedFavouriteBurgers)
+        localStorage.setItem('burgerCreator', JSON.stringify(updatedFavouriteBurgers))
         setIsBurgerAdded(true)
         setIsBurgerComplete(false)
         setTimeout(() => setIsBurgerAdded(false), 2000)
